@@ -17,6 +17,14 @@ return [
         'guard' => 'web',
         'passwords' => 'users',
     ],
+    'admin' => [
+        'driver' => 'elogquent',
+        'model' => 'App\Models\Admin::class',
+    ],
+    'seller' => [
+        'driver' => 'elogquent',
+        'model' => 'App\Models\Seller::class',
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -39,6 +47,19 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
+        ],
+        'api' => [
+            'driver' => 'token',
+            'provider' => 'users',
+            'hash' => false,
+        ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+        'seller' => [
+            'driver' => 'session',
+            'provider' => 'sellers',
         ],
     ],
 
@@ -69,6 +90,14 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
+        'sellers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Seller::class,
+        ],
     ],
 
     /*
@@ -92,6 +121,14 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
+        ],
+        'admins' => [
+            'provider' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
+        'sellers' => [
+            'provider' => 'eloquent',
+            'model' => App\Models\Seller::class,
         ],
     ],
 

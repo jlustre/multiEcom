@@ -13,6 +13,8 @@ class UserController extends Controller
         //validate input
         $request->validate([
             'name'=>'required',
+            'sponsor'=>'required|exists:users,username',
+            'username'=>'required|min:5|max:30|unique:users,username',
             'email'=>'required|email|unique:users,email',
             'password'=>'required|min:5|max:30',
             'password_confirmation'=>'required|min:5|max:30|same:password'
@@ -20,12 +22,14 @@ class UserController extends Controller
 
         $user = new User();
         $user->name = $request->name;
+        $user->sponsor = strtoupper($request->sponsor);
+        $user->username = strtoupper($request->username);
         $user->email = $request->email;
         $user->password = \Hash::make($request->password);
         $save = $user->save();
         
         if ( $save ) {
-            return redirect()->back()->with('success', 'You are now registered successfully!');
+            return redirect()->route('user.login')->with('success', 'You are now registered successfully!');
         } else {
             return redirect()->back()->with('fail', 'Something went wrong, failed to register!');
         }

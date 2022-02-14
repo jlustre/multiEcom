@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-auth-card>
         <h2 class="font-semibold text-xl text-gray-800 leading-tight mb-4 text-center">
-            {{ __('Member Registration') }}
+            {{ __('Admin Registration') }}
         </h2>
         <x-slot name="logo">
             <a href="/">
@@ -12,16 +12,14 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('user.create') }}">
+        <form method="POST" action="{{ route('admin.create') }}">
             @csrf
+            @if (Session::get('success'))
+                <div class="alert alert-success">{{ Session::get('success') }}</div>
+            @endif
             @if (Session::get('fail'))
                 <div class="alert alert-danger">{{ Session::get('fail') }}</div>
             @endif
-            <!-- Session Status -->
-            <x-auth-session-status class="mb-4" :status="session('success')" />
-
-            <!-- Validation Errors -->
-            <x-auth-validation-errors class="mb-4" :errors="$errors" />
             <!-- Name -->
             <div>
                 <x-label for="name" :value="__('Display Name')" />
@@ -33,32 +31,6 @@
                     autofocus 
                 />
                  <small class="text-danger">@error('name') {{ $message }} @enderror </small>
-            </div>
-
-            <!-- Sponsor -->
-            <div class="mt-4">
-                <x-label for="sponsor" :value="__('Sponsor')" />
-
-                <x-input id="" class="block mt-1 w-full" 
-                    type="text" sponsor
-                    name="sponsor" 
-                    value="{{ old('sponsor') }}" 
-                    autofocus 
-                />
-                 <small class="text-danger">@error('sponsor') {{ $message }} @enderror </small>
-            </div>
-
-            <!-- Username -->
-            <div class="mt-4">
-                <x-label for="username" :value="__('Username')" />
-
-                <x-input id="username" class="block mt-1 w-full" 
-                    type="text" 
-                    name="username" 
-                    value="{{ old('username') }}" 
-                    autofocus 
-                />
-                 <small class="text-danger">@error('username') {{ $message }} @enderror </small>
             </div>
 
             <!-- Email Address -->
@@ -92,12 +64,12 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('user.login') }}">
+                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('admin.login') }}">
                     {{ __('Already registered?') }}
                 </a>
 
                 <x-button class="ml-4">
-                    {{ __('Register') }}
+                    {{ __('Register As Admin') }}
                 </x-button>
             </div>
         </form>

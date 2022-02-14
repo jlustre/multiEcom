@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-auth-card>
         <h2 class="font-semibold text-xl text-gray-800 leading-tight mb-4 text-center">
-            {{ __('Member Signin') }}
+            {{ __('Admin Signin') }}
         </h2>
         <x-slot name="logo">
             <a href="/">
@@ -15,7 +15,7 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('user.check') }}" autocomplete="off">
+        <form method="POST" action="{{ route('admin.check') }}" autocomplete="off">
             @csrf
 
             @if (Session::get('fail'))
@@ -56,12 +56,12 @@
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
-                &nbsp; &nbsp;|&nbsp; &nbsp;
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('user.register') }}">
-                    {{ __('Create New Account') }}
-                </a>
+                <!-- &nbsp; &nbsp;|&nbsp; &nbsp;
+                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{-- route('admin.register') --}}">
+                    {{-- __('Create New Account') --}}
+                </a> -->
                 <x-button class="ml-3">
-                    {{ __('Log in') }}
+                    {{ __('Login As Admin') }}
                 </x-button>
             </div>
         </form>

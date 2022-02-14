@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-auth-card>
         <h2 class="font-semibold text-xl text-gray-800 leading-tight mb-4 text-center">
-            {{ __('Member Registration') }}
+            {{ __('Seller Registration') }}
         </h2>
         <x-slot name="logo">
             <a href="/">
@@ -12,16 +12,14 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('user.create') }}">
+        <form method="POST" action="{{ route('seller.create') }}">
             @csrf
+            @if (Session::get('success'))
+                <div class="alert alert-success">{{ Session::get('success') }}</div>
+            @endif
             @if (Session::get('fail'))
                 <div class="alert alert-danger">{{ Session::get('fail') }}</div>
             @endif
-            <!-- Session Status -->
-            <x-auth-session-status class="mb-4" :status="session('success')" />
-
-            <!-- Validation Errors -->
-            <x-auth-validation-errors class="mb-4" :errors="$errors" />
             <!-- Name -->
             <div>
                 <x-label for="name" :value="__('Display Name')" />
@@ -35,32 +33,6 @@
                  <small class="text-danger">@error('name') {{ $message }} @enderror </small>
             </div>
 
-            <!-- Sponsor -->
-            <div class="mt-4">
-                <x-label for="sponsor" :value="__('Sponsor')" />
-
-                <x-input id="" class="block mt-1 w-full" 
-                    type="text" sponsor
-                    name="sponsor" 
-                    value="{{ old('sponsor') }}" 
-                    autofocus 
-                />
-                 <small class="text-danger">@error('sponsor') {{ $message }} @enderror </small>
-            </div>
-
-            <!-- Username -->
-            <div class="mt-4">
-                <x-label for="username" :value="__('Username')" />
-
-                <x-input id="username" class="block mt-1 w-full" 
-                    type="text" 
-                    name="username" 
-                    value="{{ old('username') }}" 
-                    autofocus 
-                />
-                 <small class="text-danger">@error('username') {{ $message }} @enderror </small>
-            </div>
-
             <!-- Email Address -->
             <div class="mt-4">
                 <x-label for="email" :value="__('Email')" />
@@ -70,6 +42,39 @@
                     value="{{ old('email') }}" 
                 />
                 <small class="text-danger">@error('email') {{ $message }} @enderror </small>
+            </div>
+
+            <!-- Phone -->
+            <div class="mt-4">
+                <x-label for="phone" :value="__('Phone')" />
+                <x-input id="phone" class="block mt-1 w-full" 
+                    type="text" 
+                    name="phone" 
+                    value="{{ old('email') }}" 
+                />
+                <small class="text-danger">@error('phone') {{ $message }} @enderror </small>
+            </div>
+
+            <!-- Role ID -->
+            <div class="mt-4">
+                <x-label for="role_id" :value="__('Role')" />
+                <x-input id="role_id" class="block mt-1 w-full" 
+                    type="text" 
+                    name="role_id" 
+                    value="{{ old('role_id') }}" 
+                />
+                <small class="text-danger">@error('role_id') {{ $message }} @enderror </small>
+            </div>
+
+            <!-- Role ID -->
+            <div class="mt-4">
+                <x-label for="company_id" :value="__('Company')" />
+                <x-input id="company_id" class="block mt-1 w-full" 
+                    type="text" 
+                    name="company_id" 
+                    value="{{ old('company_id') }}" 
+                />
+                <small class="text-danger">@error('company_id') {{ $message }} @enderror </small>
             </div>
 
             <!-- Password -->
@@ -92,12 +97,12 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('user.login') }}">
+                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('seller.login') }}">
                     {{ __('Already registered?') }}
                 </a>
 
                 <x-button class="ml-4">
-                    {{ __('Register') }}
+                    {{ __('Register As A Seller') }}
                 </x-button>
             </div>
         </form>

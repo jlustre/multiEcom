@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('admins', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('sponsor');
-            $table->string('username')->unique();
             $table->string('email')->unique();
+            $table->integer('role_id')->default(1);
+            $table->string('phone')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
@@ -27,21 +27,11 @@ return new class extends Migration
             $table->softDeletes();
         });
 
-        DB::table('users')->insert([
-            'name' => 'Asbeez User',
-            'sponsor' => 'asbeez',
-            'username' => 'asbeez',
+        DB::table('admins')->insert([
+            'name' => 'Asbeez Admin',
             'email' => 'info@asbeez.com',
+            'phone' => '7783024500',
             'password' => \Hash::make('secret'),
-            'email_verified_at' => now(),
-            'created_at' => now(),
-        ]);
-        DB::table('users')->insert([
-            'name' => 'Joey Lustre',
-            'sponsor' => 'asbeez',
-            'username' => 'jlustre',
-            'email' => 'jlustre@asbeez.com',
-            'password' => \Hash::make('jocolus7'),
             'email_verified_at' => now(),
             'created_at' => now(),
         ]);
@@ -55,6 +45,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('admins');
     }
 };

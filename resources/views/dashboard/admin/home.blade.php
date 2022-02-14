@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Member Dashboard') }}
+            {{ __('Admin Dashboard') }}
         </h2>
     </x-slot>
 
@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    You're logged in as a USER!
+                    You're logged in as an ADMIN!
                 </div>
                 <div>
                     <table>
@@ -22,11 +22,11 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>{{ Auth::guard('web')->user()->name }}</td>
-                                <td>{{ Auth::guard('web')->user()->email }}</td>
-                                <td><a href="{{ route('user.logout') }}" 
+                                <td>{{ Auth::guard('admin')->user()->name }}</td>
+                                <td>{{ Auth::guard('admin')->user()->email }}</td>
+                                <td><a href="{{ route('admin.logout') }}" 
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                                <form action="{{ route('user.logout') }}" method="post" class="d-none" id="logout-form">
+                                <form action="{{ route('admin.logout') }}" method="post" class="d-none" id="logout-form">
                                     @csrf
                                 </form>
                             </td>
