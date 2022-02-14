@@ -15,8 +15,10 @@ class AdminController extends Controller
             'name'=>'required',
             'email'=>'required|email|unique:admins,email',
             'password'=>'required|min:5|max:30',
-            'password_confirmation'=>'required|min:5|max:30|same:password'
-        ]);
+            'password_confirmation'=>'required|min:5|max:30|same:password',
+            'terms' => 'required'
+        ],['terms.required'=>'Agree to the terms by checking the box']);
+
 
         $admin = new Admin();
         $admin->name = $request->name;

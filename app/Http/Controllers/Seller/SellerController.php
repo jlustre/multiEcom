@@ -13,19 +13,16 @@ class SellerController extends Controller
         //validate input
         $request->validate([
             'name'=>'required',
-            'phone'=>'required',
-            'company_id'=>'required',
-            'role_id'=>'required',
             'email'=>'required|email|unique:sellers,email',
             'password'=>'required|min:5|max:30',
-            'password_confirmation'=>'required|min:5|max:30|same:password'
-        ]);
+            'password_confirmation'=>'required|min:5|max:30|same:password',
+            'terms' => 'required'
+        ],['terms.required'=>'Agree to the terms by checking the box']);
 
         $seller = new Seller();
         $seller->name = $request->name;
         $seller->email = $request->email;
-        $seller->role_id = $request->role_id;
-        $seller->company_id = $request->company_id;
+        $seller->phone = $request->phone;
         $seller->password = \Hash::make($request->password);
         $save = $seller->save();
         

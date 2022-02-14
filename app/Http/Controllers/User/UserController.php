@@ -17,8 +17,9 @@ class UserController extends Controller
             'username'=>'required|min:5|max:30|unique:users,username',
             'email'=>'required|email|unique:users,email',
             'password'=>'required|min:5|max:30',
-            'password_confirmation'=>'required|min:5|max:30|same:password'
-        ]);
+            'password_confirmation'=>'required|min:5|max:30|same:password',
+            'terms' => 'required'
+        ],['terms.required'=>'Agree to the terms by checking the box']);
 
         $user = new User();
         $user->name = $request->name;

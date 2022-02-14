@@ -1,105 +1,105 @@
-<x-guest-layout>
-    <x-auth-card>
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight mb-4 text-center">
-            {{ __('Member Registration') }}
-        </h2>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@section('title', 'AsBeez Member Registration')
+@include('partials.theme1.header')
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+<body class="hold-transition register-page">
+<div class="register-box">
+  <div class="card card-outline card-warning">
+    <div class="card-header text-center">
+      <a href="{{ route('main') }}" class="h1"><b>AsBeez</b> {{ __('Member') }}</a>
+    </div>
+    <div class="card-body">
 
-        <form method="POST" action="{{ route('user.create') }}">
-            @csrf
-            @if (Session::get('fail'))
-                <div class="alert alert-danger">{{ Session::get('fail') }}</div>
-            @endif
-            <!-- Session Status -->
-            <x-auth-session-status class="mb-4" :status="session('success')" />
+      <form action="{{ route('user.create') }}" method="post" autocomplete="off">
+        @csrf
 
-            <!-- Validation Errors -->
-            <x-auth-validation-errors class="mb-4" :errors="$errors" />
-            <!-- Name -->
-            <div>
-                <x-label for="name" :value="__('Display Name')" />
+        @include('partials.theme1.regmsg')
 
-                <x-input id="name" class="block mt-1 w-full" 
-                    type="text" 
-                    name="name" 
-                    value="{{ old('name') }}" 
-                    autofocus 
-                />
-                 <small class="text-danger">@error('name') {{ $message }} @enderror </small>
+        <small class="text-danger">@error('name') {{ $message }} @enderror</small>
+        <div class="input-group mb-3">
+          <input type="text" id="name" name="name" value="{{ old('name') }}" class="form-control" placeholder="{{ __('Display name') }}">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
             </div>
+          </div>
+        </div>
 
-            <!-- Sponsor -->
-            <div class="mt-4">
-                <x-label for="sponsor" :value="__('Sponsor')" />
-
-                <x-input id="" class="block mt-1 w-full" 
-                    type="text" sponsor
-                    name="sponsor" 
-                    value="{{ old('sponsor') }}" 
-                    autofocus 
-                />
-                 <small class="text-danger">@error('sponsor') {{ $message }} @enderror </small>
+        <small class="text-danger">@error('sponsor') {{ $message }} @enderror</small>
+        <div class="input-group mb-3">
+          <input type="text" id="sponsor" name="sponsor" value="{{ old('sponsor') }}" class="form-control" placeholder="{{ __('Sponsor') }}">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
             </div>
+          </div>
+        </div>
 
-            <!-- Username -->
-            <div class="mt-4">
-                <x-label for="username" :value="__('Username')" />
-
-                <x-input id="username" class="block mt-1 w-full" 
-                    type="text" 
-                    name="username" 
-                    value="{{ old('username') }}" 
-                    autofocus 
-                />
-                 <small class="text-danger">@error('username') {{ $message }} @enderror </small>
+        <small class="text-danger">@error('username') {{ $message }} @enderror</small>
+        <div class="input-group mb-3">
+          <input type="text" id="username" name="username" value="{{ old('username') }}" class="form-control" placeholder="{{ __('Username') }}">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
             </div>
+          </div>
+        </div>
 
-            <!-- Email Address -->
-            <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
-                <x-input id="email" class="block mt-1 w-full" 
-                    type="email" 
-                    name="email" 
-                    value="{{ old('email') }}" 
-                />
-                <small class="text-danger">@error('email') {{ $message }} @enderror </small>
+        <small class="text-danger">@error('email') {{ $message }} @enderror</small>
+        <div class="input-group mb-3">
+          <input type="email" id="email" name="email" value="{{ old('email') }}"class="form-control" placeholder="{{ __('Email Address') }}">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
             </div>
+          </div>
+        </div>
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                autocomplete="new-password" />
-                <small class="text-danger">@error('password') {{ $message }} @enderror </small>
-            </div> 
-
-            <!-- Confirm Password --> 
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" />
-                <small class="text-danger">@error('password_confirmation') {{ $message }} @enderror </small>
+        <small class="text-danger">@error('password') {{ $message }} @enderror</small>
+        <div class="input-group mb-3">
+          <input type="password" id="password" name="password" class="form-control" placeholder="{{ __('Password') }}">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
             </div>
+          </div>
+        </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('user.login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-button class="ml-4">
-                    {{ __('Register') }}
-                </x-button>
+        <small class="text-danger">@error('password_confirmation') {{ $message }} @enderror</small>
+        <div class="input-group mb-3">
+          <input type="password" id="password_confirmation" name="password_confirmation" value="{{ old('password_confirmation') }}" class="form-control" placeholder="{{ __('Retype password') }}">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
             </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+          </div>
+        </div>
+
+        <small class="text-danger">@error('terms') {{ $message }} @enderror</small>
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+              <input type="checkbox" id="terms" name="terms" value="1" {{ old('terms') ? ' checked' : '' }}>
+              <label for="terms">
+               {{__('I agree to the')}} <a href="#">{{ __('terms') }}</a>
+              </label>
+            </div>
+          </div>
+          <!-- /.col -->
+
+          <div class="col-4">
+            <button type="submit" class="btn btn-warning btn-block">{{ __('Sign Up') }}</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+      <a href="{{ route('user.login') }}" class="text-center">{{ __('Already a member, signin') }}</a>
+    </div>
+    <!-- /.form-box -->
+  </div><!-- /.card -->
+</div>
+<!-- /.register-box -->
+
+@include('partials.theme1.scripts')
+</body>
+</html>
