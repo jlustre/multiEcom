@@ -28,7 +28,7 @@ return new class extends Migration
         });
 
         DB::table('admins')->insert([
-            'name' => 'Asbeez Admin',
+            'name' => 'Asbeez Administrator',
             'email' => 'info@asbeez.com',
             'phone' => '7783024500',
             'password' => \Hash::make('secret'),
