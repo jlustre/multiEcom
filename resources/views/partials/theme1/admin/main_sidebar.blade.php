@@ -18,7 +18,7 @@
         </div>
       </div>
 
-      @include('partials.theme1.sidebar_search')
+      @include('partials.theme1.common.side.sidebar_search')
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
@@ -33,21 +33,21 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link active">
+                <a href="{{ route('admin.all.user') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Item 1</p>
+                  <p>Users</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('admin.all.category') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Item 2</p>
+                  <p>Categories</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('admin.all.brand') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Item 3</p>
+                  <p>Brands</p>
                 </a>
               </li>
             </ul>

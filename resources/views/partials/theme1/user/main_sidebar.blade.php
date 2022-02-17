@@ -18,7 +18,7 @@
         </div>
       </div>
 
-      @include('partials.theme1.sidebar_search')
+      @include('partials.theme1.common.side.sidebar_search')
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">

@@ -1,6 +1,6 @@
 @section('title', 'AsBeez 404 Page')
 
-@include('partials.theme1.header')
+@include('partials.theme1.common.top.header')
 
 <body>
  <!-- Main content -->
@@ -32,7 +32,7 @@
     </section>
     <!-- /.content -->
 
-@include('partials.theme1.scripts')
+@include('partials.theme1.common.bottom.scripts')
 </body>
 </html>
 

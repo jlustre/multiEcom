@@ -1,16 +1,16 @@
  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-success navbar-light">
+  <nav class="main-header navbar navbar-expand navbar-@yield('navbar_color') navbar-light">
     
-    @include('partials.theme1.navbar_left_links')
+    @include('partials.theme1.common.top.navbar_left_links')
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       
-      @include('partials.theme1.navbar_search')
+      @include('partials.theme1.common.top.navbar_search')
 
-      @include('partials.theme1.messages')
+      @include('partials.theme1.common.top.messages')
 
-      @include('partials.theme1.notifications')
+      @include('partials.theme1.common.top.notifications')
       
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">

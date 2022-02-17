@@ -1,7 +1,7 @@
 
 @section('title', 'AsBeez Member Signin')
 
-@include('partials.theme1.header')
+@include('partials.theme1.common.top.header')
 
 <body class="hold-transition login-page">
 <div class="login-box">
@@ -12,7 +12,7 @@
     </div>
     <div class="card-body">
         
-      @include('partials.theme1.message')
+      @include('partials.theme1.common.main.message')
       
       <form action="{{ route('user.check') }}" method="POST" autocomplete="off">
         @csrf
@@ -65,6 +65,6 @@
 </div>
 <!-- /.login-box -->
 
-@include('partials.theme1.scripts')
+@include('partials.theme1.common.bottom.scripts')
 </body>
 </html>

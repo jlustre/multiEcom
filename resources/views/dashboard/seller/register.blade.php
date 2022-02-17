@@ -1,5 +1,5 @@
 @section('title', 'AsBeez Seller Registration')
-@include('partials.theme1.header')
+@include('partials.theme1.common.top.header')
 
 <body class="hold-transition register-page">
 <div class="register-box">
@@ -12,7 +12,7 @@
       <form action="{{ route('seller.create') }}" method="post">
         @csrf
 
-         @include('partials.theme1.regmsg')
+         @include('partials.theme1.common.main.regmsg')
 
         <small class="text-danger">@error('name') {{ $message }} @enderror</small>
         <div class="input-group mb-3">
@@ -90,6 +90,6 @@
 </div>
 <!-- /.register-box -->
 
-@include('partials.theme1.scripts')
+@include('partials.theme1.common.bottom.scripts')
 </body>
 </html>

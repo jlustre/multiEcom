@@ -28,13 +28,14 @@ return new class extends Migration
         });
 
         DB::table('users')->insert([
-            'name' => 'Asbeez User',
+            'name' => 'Dummy',
             'sponsor' => 'asbeez',
             'username' => 'asbeez',
             'email' => 'info@asbeez.com',
             'password' => \Hash::make('secret'),
             'email_verified_at' => now(),
             'created_at' => now(),
+            'deleted_at' => now(),
         ]);
         DB::table('users')->insert([
             'name' => 'Joey Lustre',
