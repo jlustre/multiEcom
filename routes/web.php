@@ -56,33 +56,43 @@ Route::prefix('admin')->name('admin.')->group(function () {
         //Categories
         Route::get('/category/all', [CategoryController::class, 'AllCat'])->name('all.category');
         Route::post('/category/add', [CategoryController::class, 'AddCat'])->name('store.category');
-        Route::get('/category/edit/{id}', [CategoryController::class, 'Edit']);
-        Route::get('/category/view/{id}', [CategoryController::class, 'View']);
-        Route::get('/category/softdelete/{id}', [CategoryController::class, 'SoftDelete']);
-        Route::post('/category/update/{id}', [CategoryController::class, 'Update']);
-        Route::get('/category/restore/{id}', [CategoryController::class, 'Restore']);
-        Route::get('/category/pdelete/{id}', [CategoryController::class, 'ForceDelete']);
+        Route::get('/category/edit/{id}', [CategoryController::class, 'Edit'])->where('id', '[0-9]+');
+        Route::get('/category/view/{id}', [CategoryController::class, 'View'])->where('id', '[0-9]+');
+        Route::get('/category/softdelete/{id}', [CategoryController::class, 'SoftDelete'])->where('id', '[0-9]+');
+        Route::post('/category/update/{id}', [CategoryController::class, 'Update'])->where('id', '[0-9]+');
+        Route::get('/category/restore/{id}', [CategoryController::class, 'Restore'])->where('id', '[0-9]+');
+        Route::get('/category/pdelete/{id}', [CategoryController::class, 'ForceDelete'])->where('id', '[0-9]+');
 
         //Users
         Route::get('/user/all', [UserController::class, 'AllUser'])->name('all.user');
         Route::post('/user/add', [UserController::class, 'AddUser'])->name('store.user');
-        Route::get('/user/edit/{id}', [UserController::class, 'Edit']);
-        Route::get('/user/view/{id}', [UserController::class, 'View']);
-        Route::get('/user/softdelete/{id}', [UserController::class, 'SoftDelete']);
-        Route::post('/user/update/{id}', [UserController::class, 'Update']);
-        Route::post('/user/updatepwd/{id}', [UserController::class, 'UpdatePassword']);
-        Route::get('/user/restore/{id}', [UserController::class, 'Restore']);
-        Route::get('/user/pdelete/{id}', [UserController::class, 'ForceDelete']);
+        Route::get('/user/edit/{id}', [UserController::class, 'Edit'])->where('id', '[0-9]+');
+        Route::get('/user/view/{id}', [UserController::class, 'View'])->where('id', '[0-9]+');
+        Route::get('/user/softdelete/{id}', [UserController::class, 'SoftDelete'])->where('id', '[0-9]+');
+        Route::post('/user/update/{id}', [UserController::class, 'Update'])->where('id', '[0-9]+');
+        Route::post('/user/updatepwd/{id}', [UserController::class, 'UpdatePassword'])->where('id', '[0-9]+');
+        Route::get('/user/restore/{id}', [UserController::class, 'Restore'])->where('id', '[0-9]+');
+        Route::get('/user/pdelete/{id}', [UserController::class, 'ForceDelete'])->where('id', '[0-9]+');
 
         //Brands
         Route::get('/brand/all', [UserController::class, 'AllUser'])->name('all.brand');
         Route::post('/brand/add', [UserController::class, 'AddUser'])->name('store.brand');
-        Route::get('/brand/edit/{id}', [UserController::class, 'Edit']);
-        Route::get('/brand/view/{id}', [UserController::class, 'View']);
-        Route::get('/brand/softdelete/{id}', [UserController::class, 'SoftDelete']);
-        Route::post('/brand/update/{id}', [UserController::class, 'Update']);
-        Route::get('/brand/restore/{id}', [UserController::class, 'Restore']);
-        Route::get('/brand/pdelete/{id}', [UserController::class, 'ForceDelete']);
+        Route::get('/brand/edit/{id}', [UserController::class, 'Edit'])->where('id', '[0-9]+');
+        Route::get('/brand/view/{id}', [UserController::class, 'View'])->where('id', '[0-9]+');
+        Route::get('/brand/softdelete/{id}', [UserController::class, 'SoftDelete'])->where('id', '[0-9]+');
+        Route::post('/brand/update/{id}', [UserController::class, 'Update'])->where('id', '[0-9]+');
+        Route::get('/brand/restore/{id}', [UserController::class, 'Restore'])->where('id', '[0-9]+');
+        Route::get('/brand/pdelete/{id}', [UserController::class, 'ForceDelete'])->where('id', '[0-9]+');
+
+        //Products
+        Route::get('/product/all', [UserController::class, 'AllUser'])->name('all.product');
+        Route::post('/product/add', [UserController::class, 'AddUser'])->name('store.product');
+        Route::get('/product/edit/{id}', [UserController::class, 'Edit'])->where('id', '[0-9]+');
+        Route::get('/product/view/{id}', [UserController::class, 'View'])->where('id', '[0-9]+');
+        Route::get('/product/softdelete/{id}', [UserController::class, 'SoftDelete'])->where('id', '[0-9]+');
+        Route::post('/product/update/{id}', [UserController::class, 'Update'])->where('id', '[0-9]+');
+        Route::get('/product/restore/{id}', [UserController::class, 'Restore'])->where('id', '[0-9]+');
+        Route::get('/product/pdelete/{id}', [UserController::class, 'ForceDelete'])->where('id', '[0-9]+');
     });
 });
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 
 class UserController extends Controller
@@ -80,24 +81,26 @@ class UserController extends Controller
 
         $creds = $request->only('email', 'password');
         if (Auth::guard('web')->attempt($creds)) {
-            return redirect()->route('user.home');
+                DB::table('active_users')->insert(array('user_id' =>   Auth::id()));
+                return redirect()->route('user.home')->with('success', 'You have logged in successfully');
         } else {
             return redirect()->route('user.login')->with('fail', 'Credentials do not match in our records');
         }
     }
 
     public function logout() {
+        DB::table('active_users')->where('user_id', '=', Auth::id())->delete();
         Auth::guard('web')->logout();
         return redirect()->route('main');
     }
 
     public function Edit($id){
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         return view('dashboard.admin.user.edit', compact('user'));
     }
 
     public function View($id){
-        $user = User::onlyTrashed()->find($id);
+        $user = User::onlyTrashed()->findOrFail($id);
         return view('dashboard.admin.user.view', compact('user'));
     }
     
@@ -111,7 +114,7 @@ class UserController extends Controller
         [
             'sponsor.exists' => 'Sponsor must exists in our database'
         ]);
-        $updated = User::find($id)->update([
+        $updated = User::findOrFail($id)->update([
             'name' => $request->name,
             'sponsor' => strtolower($request->sponsor),
             'username' => strtolower($request->username),
@@ -132,7 +135,7 @@ class UserController extends Controller
             'password_confirmation'=>'required|min:5|max:30|same:password',
         ]);
         
-        $updated = User::find($id)->update([
+        $updated = User::findOrFail($id)->update([
             'password' => \Hash::make($request->password),
             'updated_at' => now(),
         ]);
@@ -146,16 +149,16 @@ class UserController extends Controller
 
 
     public function SoftDelete($id){
-        $user = User::find($id)->delete();
+        $user = User::findOrFail($id)->delete();
         return Redirect()->back()->with('success', 'User ID: '.$id.' Deactivated Successfully');
     }
 
     public function Restore($id){
-        $user = User::withTrashed()->find($id)->restore();
+        $user = User::withTrashed()->findOrFail($id)->restore();
         return Redirect()->back()->with('success', 'User ID: '.$id.' Activated Successfully');
     }
     public function ForceDelete($id){
-        $user = User::onlyTrashed()->find($id)->forceDelete();
+        $user = User::onlyTrashed()->findOrFail($id)->forceDelete();
         return Redirect()->back()->with('success', 'User ID: '.$id.' Was Deleted Permanently');
     }
 }

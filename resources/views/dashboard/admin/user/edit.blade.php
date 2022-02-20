@@ -16,10 +16,14 @@
                                 @csrf
                                 @include('dashboard.admin.user.form')
                                 <div class="d-flex justify-content-between">
-                                    <div class="mb-3"><label for="id" class="form-label mr-2">{{ __('Created At') }}: </label>{{ carbon\carbon::parse($user->created_at)->diffForHumans() }}</div>
-                                    <div class="mb-3"><label for="id" class="form-label mr-2">{{ __('Updated At') }}: </label>{{ carbon\carbon::parse($user->updated_at)->diffForHumans() }}</div>
+                                    <small><label for="id" class="form-label mr-2">{{ __('Created') }}: </label>{{ carbon\carbon::parse($user->created_at)->diffForHumans() }}</small>
+                                    <small><label for="id" class="form-label mr-2">{{ __('Updated') }}: </label>{{ carbon\carbon::parse($user->updated_at)->diffForHumans() }}</small>
                                 </div>
                                 <div class="d-flex justify-content-between">
+                                    <small><label for="id" class="form-label mr-2">{{ __('Last Login') }}: </label>{{ carbon\carbon::parse($user->last_login)->diffForHumans() }}</small>
+                                    <small><label for="id" class="form-label mr-2">{{ __('Last IP') }}: </label>{{ $user->last_ip }}</small>
+                                </div>
+                                <div class="d-flex justify-content-between mt-3">
                                     <button type="submit" class="btn btn-sm btn-primary">{{ __('Update User') }}</button>
                                     <a class="btn btn-sm btn-success" href="{{ route('admin.all.user') }}">{{ __('Cancel') }}</a>
                                 </div>

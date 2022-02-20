@@ -27,100 +27,107 @@
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Dashboard
+                Store Tables
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('admin.all.user') }}" class="nav-link">
+                <a href="{{ route('admin.all.user') }}" 
+                class="nav-link {{ request()->is('admin/user/*') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Users</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('admin.all.category') }}" class="nav-link">
+                <a href="{{ route('admin.all.category') }}" 
+                class="nav-link {{ request()->is('admin/category/*') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Categories</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('admin.all.brand') }}" class="nav-link">
+                <a href="{{ route('admin.all.brand') }}" 
+                class="nav-link {{ request()->is('admin/brand/*') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Brands</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{ route('admin.all.product') }}" 
+                class="nav-link {{ request()->is('admin/product/*') ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Products</p>
+                </a>
+              </li>
             </ul>
           </li>
-          <li class="nav-header">MULTI LEVEL EXAMPLE</li>
+         
+          <!-- Reports -->
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="fas fa-circle nav-icon"></i>
-              <p>Level 1</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-circle"></i>
+            <a href="#" class="nav-link active">
+              <i class="nav-icon far fa-envelope"></i>
               <p>
-                Level 1
-                <i class="right fas fa-angle-left"></i>
+                Reports
+                <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Level 2</p>
+                  <p>Report#1</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>
-                    Level 2
-                    <i class="right fas fa-angle-left"></i>
-                  </p>
+                  <p>Report#2</p>
                 </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="far fa-dot-circle nav-icon"></i>
-                      <p>Level 3</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="far fa-dot-circle nav-icon"></i>
-                      <p>Level 3</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="far fa-dot-circle nav-icon"></i>
-                      <p>Level 3</p>
-                    </a>
-                  </li>
-                </ul>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Level 2</p>
+                  <p>Report#3</p>
                 </a>
               </li>
             </ul>
           </li>
+
+          <!-- Store Pages -->
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="fas fa-circle nav-icon"></i>
-              <p>Level 1</p>
+            <a href="#" class="nav-link active">
+              <i class="nav-icon far fa-envelope"></i>
+              <p>
+                Store Pages
+                <i class="fas fa-angle-left right"></i>
+              </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>About Us</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Terms & Condition</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Privacy Policy</p>
+                </a>
+              </li>
+            </ul>
           </li>
-          
-          <!-- Mailbox -->
+
+           <!-- Mailbox -->
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link active">
               <i class="nav-icon far fa-envelope"></i>
               <p>
                 Mailbox
@@ -148,6 +155,8 @@
               </li>
             </ul>
           </li>
+
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

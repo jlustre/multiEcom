@@ -24,6 +24,8 @@ class User extends Authenticatable
         'sponsor',
         'username',
         'password',
+        'last_login',
+        'last_ip',
     ];
 
     /**
@@ -45,6 +47,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // public function activeUser() {
+    //     return $this->hasOne(ActiveUser::class, 'id','user_id');
+    // }
+    public function activeUser()
+    {
+        return $this->belongsTo(ActiveUser::class);
+    }
 
 }
 

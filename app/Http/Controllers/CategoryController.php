@@ -45,13 +45,13 @@ class CategoryController extends Controller
 
     public function Edit($id){
         $categories = Category::all(); //ORM Eloquent
-        $category = Category::find($id);
+        $category = Category::findOrFail($id);
         return view('dashboard.admin.category.edit', compact('categories', 'category'));
     }
 
     public function View($id){
         $categories = Category::all(); //ORM Eloquent
-        $category = Category::onlyTrashed()->find($id);
+        $category = Category::onlyTrashed()->findOrFail($id);
         return view('dashboard.admin.category.view', compact('categories', 'category'));
     }
     
@@ -62,7 +62,7 @@ class CategoryController extends Controller
         [
             'category_name.required' => 'Please input a category name'
         ]);
-        $updated = Category::find($id)->update([
+        $updated = Category::findOrFail($id)->update([
             'category_name' => $request->category_name,
             'parent_id' => $request->parent_id,
             'updated_at' => now(),
@@ -76,16 +76,16 @@ class CategoryController extends Controller
     }
 
     public function SoftDelete($id){
-        $category = Category::find($id)->delete();
+        $category = Category::findOrFail($id)->delete();
         return Redirect()->back()->with('success', 'Category ID: '.$id.' Deactivated Successfully');
     }
 
     public function Restore($id){
-        $category = Category::withTrashed()->find($id)->restore();
+        $category = Category::withTrashed()->findOrFail($id)->restore();
         return Redirect()->back()->with('success', 'Category ID: '.$id.' Activated Successfully');
     }
     public function ForceDelete($id){
-        $category = Category::onlyTrashed()->find($id)->forceDelete();
+        $category = Category::onlyTrashed()->findOrFail($id)->forceDelete();
         return Redirect()->back()->with('success', 'Category ID: '.$id.' Was Deleted Permanently');
     }
     

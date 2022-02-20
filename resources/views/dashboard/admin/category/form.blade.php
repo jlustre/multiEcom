@@ -1,7 +1,7 @@
 <div class="mb-3">
     <div class="d-flex justify-content-between">
         <label for="parent_id" class="form-label">{{ __('Parent Category') }}</label>
-        <label for="id" class="form-label">ID: {{ $category->id}}</label>
+        <!-- <label for="id" class="form-label">ID: {{-- $category->id --}}</label> -->
     </div>
     <select name="parent_id" class="form-control" id="parent_id" value="{{ $category->parent_id }}">
         <option value="">Select one</option>
