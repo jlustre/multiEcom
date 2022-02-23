@@ -32,3 +32,4 @@
 <script src="{{ asset('theme1/dist/js/demo.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('theme1/dist/js/pages/dashboard.js') }}"></script>
+<script src="https://kit.fontawesome.com/b07b84274a.js" crossorigin="anonymous"></script>

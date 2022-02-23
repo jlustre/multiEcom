@@ -67,12 +67,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/user/restore/{id}', [UserController::class, 'restore'])->where('id', '[0-9]+');
 
         //Brands
-        Route::resource('menu', MenuController::class);
+        Route::resource('brand', MenuController::class);
         Route::get('/brand/softdelete/{id}', [MenuController::class, 'softDelete'])->where('id', '[0-9]+');
         Route::get('/brand/restore/{id}', [MenuController::class, 'restore'])->where('id', '[0-9]+');
 
         //Products
-        Route::resource('menu', MenuController::class);
+        Route::resource('product', MenuController::class);
         Route::get('/product/softdelete/{id}', [MenuController::class, 'softDelete'])->where('id', '[0-9]+');
         Route::get('/product/restore/{id}', [MenuController::class, 'restore'])->where('id', '[0-9]+');
 

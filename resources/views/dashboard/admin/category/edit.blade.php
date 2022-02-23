@@ -15,9 +15,9 @@
                                 @csrf
                                 @method('PUT')
                                 @include('dashboard.admin.category.form')
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-3"><label for="id" class="form-label mr-2">{{ __('Created At') }}: </label>{{ carbon\carbon::parse($category->created_at)->diffForHumans() }}</div>
-                                    <div class="mb-3"><label for="id" class="form-label mr-2">{{ __('Updated At') }}: </label>{{ carbon\carbon::parse($category->updated_at)->diffForHumans() }}</div>
+                                <div class="d-flex justify-content-between mb-3">
+                                    <div><label class="form-label mr-1">{{ __('Created At') }}: </label>{{ carbon\carbon::parse($category->created_at)->diffForHumans() }}</div>
+                                    <div><label class="form-label mr-1">{{ __('Updated At') }}: </label>{{ carbon\carbon::parse($category->updated_at)->diffForHumans() }}</div>
                                 </div>
                                 <div class="card-footer d-flex justify-content-between">
                                     <button type="submit" class="btn btn-sm btn-primary">{{ __('Update Category') }}</button>

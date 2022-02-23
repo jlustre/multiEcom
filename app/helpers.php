@@ -10,7 +10,7 @@ if (!function_exists('user_sponsor')) {
 }
 
 if (!function_exists('buildTree')) {
-    function buildTree(array $items, $parentId = 0) {
+    function buildTree(array $items, $parentId=null) {
         $branch = array();
         foreach ($items as $item) {
             if ($item['parent_id'] == $parentId) {

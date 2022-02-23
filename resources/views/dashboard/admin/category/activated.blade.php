@@ -7,25 +7,25 @@
         <table class="table">
             <thead>
                 <tr>
-                <!-- <th scope="col">#</th> -->
-                <th scope="col">ID</th>
-                <th scope="col">Parent</th>
-                <th scope="col">Category Name</th>
-                <th scope="col">Created At</th> 
-                <th scope="col">Action</th>
+                    <th scope="col">#</th> 
+                    <th scope="col">Photo</th>
+                    <th scope="col">Category Name</th>
+                    <th scope="col">Parent</th>
+                    <th scope="col">Created At</th> 
+                    <th scope="col" class="float-right">Action</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($categories as $category)
                 <tr>
-                    <!-- <td scope="row">{{-- $categories->firstItem()+$loop->index --}}</td> -->
-                    <td>{{ $category->id }}</td>
-                    <td>{{ $category->parent_id == 1 ? 'Root' : $category->parent->category_name}}</td>
+                    <td scope="row">{{ $categories->firstItem()+$loop->index  }}</td> 
+                    <td>{{ $category->photo }}</td>
                     <td>{{ $category->category_name }}</td>
+                    <td>{{ $category->parent_id == 1 ? 'Root' : $category->parent->category_name}}</td>
                     <td>{{ carbon\carbon::parse($category->created_at)->diffForHumans() }}</td>
-                    <td>
-                        <a href="{{ url('admin/category/'.$category->id.'/edit')}}" class="btn btn-xs btn-info">Edit/View</a>
-                        <a href="{{ url('admin/category/softdelete/'.$category->id) }}" class="btn btn-xs btn-warning">Deactivate</a>
+                    <td class="d-flex justify-content-end align-items-end">
+                        <a href="{{ url('admin/category/'.$category->id.'/edit')}}" class="btn btn-xs btn-info ml-1">Edit/View</a>
+                        <a href="{{ url('admin/category/softdelete/'.$category->id) }}" class="btn btn-xs btn-warning ml-1">Deactivate</a>
                     </td>
 
                 </tr>

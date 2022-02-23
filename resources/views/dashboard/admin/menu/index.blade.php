@@ -8,8 +8,19 @@
             <div class="row">
                 <div class="col-md-8">
                     @include('partials.theme1.common.main.message2')
-                    @include('dashboard.admin.menu.activated')
-                    @include('dashboard.admin.menu.deactivated')
+                   
+                    @if (count($menus) > 0)  
+                         @include('dashboard.admin.menu.activated')
+                    @else
+                        <p>No Active Menu!</p>
+                    @endif
+
+                    @if (count($tmenus) > 0)  
+                        @include('dashboard.admin.menu.deactivated')
+                    @else
+                        <p>No Deactivated Menu!</p>
+                    @endif
+                    
                     
                 </div>
                 

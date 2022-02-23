@@ -7,10 +7,10 @@
         <table class="table">
             <thead>
                 <tr>
-                <!-- <th scope="col">#</th> -->
-                <th scope="col">ID</th>
-                <th scope="col">Parent</th>
+                <th scope="col">#</th> 
+                <th scope="col">Icon</th>
                 <th scope="col">Name</th>
+                <th scope="col">Parent</th>
                 <th scope="col">Deactivated</th>
                 <th scope="col" class="float-right">Action</th>
                 </tr>
@@ -19,10 +19,10 @@
                 @foreach ($tmenus as $tmenu)
                     @if ($tmenu->id !== 1)
                         <tr>
-                            <!-- <th scope="row">{{-- $tmenus->firstItem()+$loop->index --}}</th> -->
-                            <td>{{ $tmenu->id }}</td>
-                            <td>{{ $tmenu->parent_id == 1 ? 'Root' : $tmenu->parent->name}}</td>
+                            <th scope="row">{{ $tmenus->firstItem()+$loop->index }}</th> 
+                            <td><i class="{{ $tmenu->iconclass }}"></i></td>
                             <td>{{ $tmenu->name }}</td>
+                            <td>{{ !$tmenu->parent_id ? 'Root' : $tmenu->parent->name}}</td>
                             <td><small>{{ carbon\carbon::parse($tmenu->deleted_at)->diffForHumans() }}</small></td>
                             <td class="d-flex justify-content-end align-items-end">
                                 <a href="{{ url('admin/menu/'.$tmenu->id)}}" class="btn btn-xs btn-info ml-1">View</a>

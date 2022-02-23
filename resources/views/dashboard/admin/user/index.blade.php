@@ -8,8 +8,19 @@
             <div class="row">
                 <div class="col-md-8">
                     @include('partials.theme1.common.main.message2')
-                    @include('dashboard.admin.user.activated')
-                    @include('dashboard.admin.user.deactivated')
+                   
+                    @if (count($users) > 0)  
+                          @include('dashboard.admin.user.activated')
+                    @else
+                        <p>No Active User!</p>
+                    @endif
+
+                    @if (count($tusers) > 1)  
+                          @include('dashboard.admin.user.deactivated')
+                    @else
+                        <p>No Deactivated User!</p>
+                    @endif
+                    
                 </div>
                 
                 <div class="col-md-4">

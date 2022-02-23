@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            // $table->foreignId('supplier_id')->constrained()->cascadeOnDelete();
             $table->rememberToken();
             $table->timestamps();
             $table->boolean('is_active')->default(1);

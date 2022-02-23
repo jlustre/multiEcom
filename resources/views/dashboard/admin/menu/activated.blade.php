@@ -7,21 +7,21 @@
         <table class="table">
             <thead>
                 <tr>
-                <!-- <th scope="col">#</th> -->
-                <th scope="col">ID</th>
-                <th scope="col">Parent</th>
-                <th scope="col">Menu Name</th>
-                <th scope="col">Created At</th> 
-                <th scope="col" class="float-right">Action</th>
+                    <th scope="col">#</th> 
+                    <th scope="col">Icon</th>
+                    <th scope="col">Menu Name</th>
+                    <th scope="col">Parent</th>
+                    <th scope="col">Created At</th> 
+                    <th scope="col" class="float-right">Action</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($menus as $menu)
                 <tr>
-                    <!-- <td scope="row">{{-- $menus->firstItem()+$loop->index --}}</td> -->
-                    <td>{{ $menu->id }}</td>
-                    <td>{{ $menu->parent_id == 1 ? 'Root' : $menu->parent->name}}</td>
+                    <td scope="row">{{ $menus->firstItem()+$loop->index }}</td> 
+                    <td><i class="{{ $menu->iconclass }}"></i></td>
                     <td>{{ $menu->name }}</td>
+                    <td>{{ !$menu->parent_id ? 'Root' : $menu->parent->name}}</td>
                     <td><small>{{ Carbon\carbon::parse($menu->created_at)->diffForHumans() }}</small></td>
                     <td class="d-flex justify-content-end align-items-end">
                         <a href="{{ url('admin/menu/'.$menu->id.'/edit')}}" class="btn btn-xs btn-info ml-1">Edit/View</a>

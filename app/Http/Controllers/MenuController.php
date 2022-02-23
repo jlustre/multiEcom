@@ -19,7 +19,7 @@ class MenuController extends Controller
     public function index() {
         $allmenu = Menu::orderBy('parent_id')->select('id','parent_id','name')->get()->toArray();
         $tree = array();
-        $tree = buildTree($allmenu, 1);
+        $tree = buildTree($allmenu);
 
         usort($allmenu, function($a, $b) {
             return $a['name'] <=> $b['name'];

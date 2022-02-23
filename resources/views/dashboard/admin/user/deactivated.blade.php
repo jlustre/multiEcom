@@ -7,24 +7,24 @@
         <table class="table">
             <thead>
                 <tr>
-                <!-- <th scope="col">#</th> -->
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Sponsor</th>
-                <th scope="col">Username</th>
-                <th scope="col">Deactivated</th>
-                <th scope="col" class="float-right">Action</th>
+                    <th scope="col">#</th> 
+                    <th scope="col">Avatar</th>
+                    {{-- <th scope="col">Name</th> --}}
+                    <th scope="col">Username</th>
+                    <th scope="col">Sponsor</th>
+                    <th scope="col">Deactivated</th>
+                    <th scope="col" class="float-right">Action</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($tusers as $tuser)
                     @if ($tuser->id !== 1)
                         <tr>
-                            <!-- <th scope="row">{{-- $tusers->firstItem()+$loop->index --}}</th> -->
-                            <td>{{ $tuser->id }}</td>
-                            <td>{{ $tuser->name }}</td>
-                            <td>{{ $tuser->sponsor }}</td>
+                            <th scope="row">{{ $tusers->firstItem()+$loop->index }}</th> 
+                            <td>{{ $tuser->profile_image_url }}</td>
+                            {{-- <td>{{ $tuser->name }}</td> --}}
                             <td>{{ $tuser->username }}</td>
+                            <td>{{ $tuser->sponsor }}</td>
                             <td><small>{{ carbon\carbon::parse($tuser->deleted_at)->diffForHumans() }}</small></td>
                             <td class="d-flex justify-content-end align-items-end">
                                     <a href="{{ url('admin/user/'.$tuser->id)}}" class="btn btn-xs btn-info ml-1">View</a>

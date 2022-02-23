@@ -8,8 +8,17 @@
             <div class="row">
                 <div class="col-md-8">
                     @include('partials.theme1.common.main.message2')
-                    @include('dashboard.admin.category.activated')
-                    @include('dashboard.admin.category.deactivated')
+                    @if (count($categories) > 0)  
+                        @include('dashboard.admin.category.activated')
+                    @else
+                        <p>No Active Category!</p>
+                    @endif
+
+                    @if (count($tcategories) > 1)  
+                        @include('dashboard.admin.category.deactivated')
+                    @else
+                        <p>No Deactivated Category!</p>
+                    @endif
                     
                 </div>
                 

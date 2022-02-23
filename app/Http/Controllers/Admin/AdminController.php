@@ -46,7 +46,7 @@ class AdminController extends Controller
         if (Auth::guard('admin')->attempt($creds)) {
             $allmenu = Menu::orderBy('parent_id')->get()->toArray();
             $tree = array();
-            $tree = $this->buildTree($allmenu, 1);
+            $tree = buildTree($allmenu);
             // echo '<pre>';
             // print_r($allmenu); 
             // print_r($tree); 
@@ -63,20 +63,6 @@ class AdminController extends Controller
     public function logout() {
         Auth::guard('admin')->logout();
         return redirect()->route('main');
-    }
-
-    public function buildTree(array $items, $parentId = 0) {
-        $branch = array();
-        foreach ($items as $item) {
-            if ($item['parent_id'] == $parentId) {
-                $children = $this->buildTree($items, $item['id']);
-                if ($children) {
-                    $item['children'] = $children;
-                }
-                $branch[] = $item;
-            }
-        }
-        return $branch;
     }
 
 }
