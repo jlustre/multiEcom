@@ -4,24 +4,46 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
-use Auth;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
-    public function __construct() {
-        // $this->middleware('auth');
-    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(){
+        $allcat = Category::orderBy('parent_id')->select('id','parent_id','category_name')->get()->toArray();
+        $tree = array();
+        $tree = buildTree($allcat, 1);
 
-    public function AllCat() {
-        // $categories = DB::table('categories')->latest()->paginate(5); //Query Builder
-        $categories = Category::paginate(10); //ORM Eloquent
+        usort($allcat, function($a, $b) {
+            return $a['category_name'] <=> $b['category_name'];
+        });
+
+        $categories = Category::orderBy('parent_id')->paginate(10); //ORM Eloquent
         $tcategories = Category::onlyTrashed()->paginate(10); //ORM Eloquent
-        return view('dashboard.admin.category.index', compact('categories','tcategories'));
+
+        return view('dashboard.admin.category.index', compact('allcat', 'tree', 'categories','tcategories'));
     }
 
-    public function AddCat(Request $request) {
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create() {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request) {
         $validated = $request->validate([
             'parent_id' => 'required|exists:categories,id',
             'category_name' => 'required|unique:categories|max:255',
@@ -43,19 +65,38 @@ class CategoryController extends Controller
         }
     }
 
-    public function Edit($id){
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id){
+        $categories = Category::all(); //ORM Eloquent
+        $category = Category::onlyTrashed()->findOrFail($id);
+        return view('dashboard.admin.category.view', compact('categories', 'category'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id) {
         $categories = Category::all(); //ORM Eloquent
         $category = Category::findOrFail($id);
         return view('dashboard.admin.category.edit', compact('categories', 'category'));
     }
 
-    public function View($id){
-        $categories = Category::all(); //ORM Eloquent
-        $category = Category::onlyTrashed()->findOrFail($id);
-        return view('dashboard.admin.category.view', compact('categories', 'category'));
-    }
-    
-    public function Update(Request $request, $id) {
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id){
         $validated = $request->validate([
             'category_name' => 'required|max:255|unique:categories,category_name,'.$id.',id',
         ],
@@ -69,24 +110,31 @@ class CategoryController extends Controller
         ]);
 
         if ($updated) {
-            return Redirect()->route('admin.all.category')->with('success', 'Category ID: '.$id.' Updated Successfully');
+            return Redirect()->route('admin.category.index')->with('success', 'Category ID: '.$id.' Updated Successfully');
         } else {
-            return Redirect()->route('admin.all.category')->with('fail', 'Failed to update Category ID: '.$id);
+            return Redirect()->route('admin.category.edit', $id)->with('fail', 'Failed to update Category ID: '.$id);
         }
     }
 
-    public function SoftDelete($id){
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id) {
+        $category = Category::onlyTrashed()->findOrFail($id)->forceDelete();
+        return Redirect()->back()->with('success', 'Category ID: '.$id.' Was Deleted Permanently');
+    }
+
+    public function softDelete($id){
         $category = Category::findOrFail($id)->delete();
         return Redirect()->back()->with('success', 'Category ID: '.$id.' Deactivated Successfully');
     }
 
-    public function Restore($id){
+    public function restore($id){
         $category = Category::withTrashed()->findOrFail($id)->restore();
         return Redirect()->back()->with('success', 'Category ID: '.$id.' Activated Successfully');
     }
-    public function ForceDelete($id){
-        $category = Category::onlyTrashed()->findOrFail($id)->forceDelete();
-        return Redirect()->back()->with('success', 'Category ID: '.$id.' Was Deleted Permanently');
-    }
-    
+
 }

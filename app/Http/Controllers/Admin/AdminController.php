@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Admin;
+use App\Models\Menu;
 
 class AdminController extends Controller
 {
@@ -43,6 +44,16 @@ class AdminController extends Controller
 
         $creds = $request->only('email', 'password');
         if (Auth::guard('admin')->attempt($creds)) {
+            $allmenu = Menu::orderBy('parent_id')->get()->toArray();
+            $tree = array();
+            $tree = $this->buildTree($allmenu, 1);
+            // echo '<pre>';
+            // print_r($allmenu); 
+            // print_r($tree); 
+            // exit;
+
+            $request->session()->put('tree', $tree);
+
             return redirect()->route('admin.home');
         } else {
             return redirect()->route('admin.login')->with('fail', 'Credentials do not match in our records');
@@ -53,4 +64,19 @@ class AdminController extends Controller
         Auth::guard('admin')->logout();
         return redirect()->route('main');
     }
+
+    public function buildTree(array $items, $parentId = 0) {
+        $branch = array();
+        foreach ($items as $item) {
+            if ($item['parent_id'] == $parentId) {
+                $children = $this->buildTree($items, $item['id']);
+                if ($children) {
+                    $item['children'] = $children;
+                }
+                $branch[] = $item;
+            }
+        }
+        return $branch;
+    }
+
 }

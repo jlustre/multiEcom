@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header bg-secondary"><h5>{{ __('ADD NEW USER') }}</h5></div>
     <div class="card-body">
-        <form action="{{ route('admin.store.user') }}" method="POST" autocomplete="off">
+        <form action="{{ route('admin.user.store') }}" method="POST" autocomplete="off">
             <input autocomplete="false" name="hidden" type="text" style="display:none;">
             @csrf
             <div class="mb-2">

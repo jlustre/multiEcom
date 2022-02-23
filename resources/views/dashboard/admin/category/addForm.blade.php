@@ -3,7 +3,7 @@
         <h5>{{ __('ADD NEW CATEGORY') }}</h5>
     </div>
     <div class="card-body">
-        <form action="{{ route('admin.store.category') }}" method="POST">
+        <form action="{{ route('admin.category.store') }}" method="POST">
             @csrf
             <div class="mb-2">
                 <div class="d-flex justify-content-start">
@@ -12,8 +12,8 @@
                 <select name="parent_id" class="form-control" id="parent_id" value="{{ old('parent_id') }}">
                     <option value="">Select one</option>
                     <option value="1">Root Category</option>
-                    @foreach($categories as $cat)
-                        <option value="{{ $cat->id }}">{{ $cat->category_name }}</option>
+                    @foreach($allcat as $cat)
+                        <option value="{{ $cat['id'] }}">{{ $cat['category_name'] }}</option>
                     @endforeach
                 </select>
                 @error('parent_id')

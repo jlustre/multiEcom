@@ -28,11 +28,11 @@ return new class extends Migration
             $table->string('expanded_url')->nullable();
             $table->integer('followers_count')->nullable();
             $table->integer('friends_count')->nullable();
-            $table->integer('listed_count');
-            $table->string('twitter_created_at', 10);
-            $table->integer('favourites_count');
-            $table->integer('statuses_count');
-            $table->string('status', 150);
+            $table->integer('listed_count')->nullable();
+            $table->string('twitter_created_at', 10)->nullable();
+            $table->integer('favourites_count')->nullable();
+            $table->integer('statuses_count')->nullable();
+            $table->string('status', 150)->nullable();
             $table->text('profile_image_url', 16777215)->nullable();
             $table->datetime('last_login')->nullable();
             $table->string('last_ip')->nullable();

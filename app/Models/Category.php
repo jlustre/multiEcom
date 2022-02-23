@@ -14,9 +14,19 @@ class Category extends Model
     protected $fillable = [
         'parent_id',
         'category_name',
+        'description',
+        'photo',
     ];
 
-    // public function user() {
-    //     return $this->hasOne(User::class, 'id','user_id');
-    // }
+    public function children() {
+        return $this->hasMany(Category::class, 'parent_id', 'id');
+    }
+
+    public function parent() {
+        return $this->belongsTo(Category::class, 'parent_id');
+    }
+
+    public function user() {
+        return $this->hasOne(User::class, 'id','user_id');
+    }
 }

@@ -27,11 +27,18 @@
                     @auth
                         <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
                     @else
-                        <a href="{{ route('user.login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-
+                        (
+                        <a href="{{ route('user.login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">User</a> |
+                        <a href="{{ route('seller.login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Seller</a> |
+                        <a href="{{ route('admin.login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Admin</a>
+                        ) Login
+                        (
                         @if (Route::has('user.register'))
-                            <a href="{{ route('user.register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                        <a href="{{ route('user.register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">User</a> |
                         @endif
+                        <a href="{{ route('seller.register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Seller</a> |
+                        <a href="{{ route('admin.register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Admin</a>
+                        ) Register
                     @endauth
                 </div>
             @endif

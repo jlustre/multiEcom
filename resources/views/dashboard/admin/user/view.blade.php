@@ -13,11 +13,11 @@
                         <div class="card-body">
                                 @include('dashboard.admin.user.form')
                                 <div class="d-flex justify-content-between">
-                                    <div class="mb-3"><label for="id" class="form-label mr-2">Created At: </label>{{ carbon\carbon::parse($user->created_at)->diffForHumans() }}</div>
-                                    <div class="mb-3"><label for="id" class="form-label mr-2">Updated At: </label>{{ carbon\carbon::parse($user->updated_at)->diffForHumans() }}</div>
+                                    <div class="mb-3"><label for="id" class="form-label ml-2">Created At: </label>{{ carbon\carbon::parse($user->created_at)->diffForHumans() }}</div>
+                                    <div class="mb-3"><label for="id" class="form-label ml-2">Updated At: </label>{{ carbon\carbon::parse($user->updated_at)->diffForHumans() }}</div>
                                 </div>
                                 <div class="d-flex justify-end">
-                                    <a class="btn btn-sm btn-success" href="{{ route('admin.all.user') }}">Close</a>
+                                    <a class="btn btn-sm btn-success" href="{{ route('admin.user.index') }}">Close</a>
                                 </div>
                             </form>
                         </div>

@@ -12,8 +12,9 @@
                         @include('partials.theme1.common.main.message2')
                         <div class="card-header bg-secondary"><h5>{{ __('EDIT/VIEW USER') }}</h5></div>
                         <div class="card-body">
-                            <form action="{{ url('admin/user/update/'.$user->id) }}" method="POST">
+                            <form action="{{ url('admin/user/'.$user->id) }}" method="POST">
                                 @csrf
+                                @method('PUT')
                                 @include('dashboard.admin.user.form')
                                 <div class="d-flex justify-content-between">
                                     <small><label for="id" class="form-label mr-2">{{ __('Created') }}: </label>{{ carbon\carbon::parse($user->created_at)->diffForHumans() }}</small>
@@ -25,7 +26,7 @@
                                 </div>
                                 <div class="d-flex justify-content-between mt-3">
                                     <button type="submit" class="btn btn-sm btn-primary">{{ __('Update User') }}</button>
-                                    <a class="btn btn-sm btn-success" href="{{ route('admin.all.user') }}">{{ __('Cancel') }}</a>
+                                    <a class="btn btn-sm btn-success" href="{{ route('admin.user.index') }}">{{ __('Cancel') }}</a>
                                 </div>
                             </form>
                         </div>

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('header_title', 'All Categories')
+@section('header_title', 'All Menus')
 
 @section('main_content')
    <div class="py-12">
@@ -8,14 +8,14 @@
             <div class="row">
                 <div class="col-md-8">
                     @include('partials.theme1.common.main.message2')
-                    @include('dashboard.admin.category.activated')
-                    @include('dashboard.admin.category.deactivated')
+                    @include('dashboard.admin.menu.activated')
+                    @include('dashboard.admin.menu.deactivated')
                     
                 </div>
                 
                 <div class="col-md-4">
-                    @include('dashboard.admin.category.addForm')
-                    @include('dashboard.admin.category.tree')
+                    @include('dashboard.admin.menu.addForm')
+                    @include('dashboard.admin.menu.tree')
                 </div>
             </div>
         </div>
