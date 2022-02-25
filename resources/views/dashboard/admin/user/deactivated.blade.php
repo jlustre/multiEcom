@@ -1,7 +1,6 @@
  <div class="card">
-    <div class="card-header d-flex justify-content-between bg-secondary">
-        <h5>{{ __('DEACTIVATED USERS') }}</h5>
-        {{-- <div class="mr-2">{{ __('Total') }}: <span class="badge rounded-pill bg-danger ml-2">{{ count($tusers)-1 }}</span></div> --}}
+    <div class="card-header">
+        <h3 class="card-title">{{ __('DEACTIVATED USERS') }}</h3>
     </div>
     <div class="card-body">
         <table class="table">

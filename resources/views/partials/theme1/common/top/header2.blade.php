@@ -17,6 +17,9 @@
   <link rel="stylesheet" href="{{ asset('theme1/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
   <!-- JQVMap -->
   <link rel="stylesheet" href="{{ asset('theme1/plugins/jqvmap/jqvmap.min.css') }}">
+
+  @include('partials.theme1.common.top.datatable_styles')
+
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('theme1/dist/css/adminlte.min.css') }}">
   <!-- overlayScrollbars -->

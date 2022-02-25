@@ -16,8 +16,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        // $categories = DB::table('categories')->latest()->paginate(5); //Query Builder
-        $users = User::latest()->paginate(10); //ORM Eloquent
+        $users = User::all(); //ORM Eloquent
         $tusers = User::onlyTrashed()->latest()->paginate(10); //ORM Eloquent
         return view('dashboard.admin.user.index', compact('users','tusers'));
     }

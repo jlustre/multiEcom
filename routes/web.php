@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Seller\SellerController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,7 +73,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/brand/restore/{id}', [MenuController::class, 'restore'])->where('id', '[0-9]+');
 
         //Products
-        Route::resource('product', MenuController::class);
+        Route::resource('product', ProductController::class);
         Route::get('/product/softdelete/{id}', [MenuController::class, 'softDelete'])->where('id', '[0-9]+');
         Route::get('/product/restore/{id}', [MenuController::class, 'restore'])->where('id', '[0-9]+');
 

@@ -32,10 +32,11 @@
         <label for="routegroup" class="form-label">{{ __('Route Group') }}</label>
         <select name="routegroup" class="form-control" id="routegroup" value="{{ $menu->routegroup }}">
             <option value="">Select one</option>
-            <option value="user" {{ ($menu->routegroup == 'user') ? 'selected' : '' }}>user</option>
+            <option value="brand" {{ ($menu->routegroup == 'brand') ? 'selected' : '' }}>brand</option>
             <option value="category" {{ ($menu->routegroup == 'category') ? 'selected' : '' }}>category</option>
             <option value="menu" {{ ($menu->routegroup == 'menu') ? 'selected' : '' }}>menu</option>
-            <option value="brand" {{ ($menu->routegroup == 'brand') ? 'selected' : '' }}>brand</option>
+            <option value="product" {{ ($menu->routegroup == 'product') ? 'selected' : '' }}>product</option>
+            <option value="user" {{ ($menu->routegroup == 'user') ? 'selected' : '' }}>user</option>
         </select>
     </div>
 

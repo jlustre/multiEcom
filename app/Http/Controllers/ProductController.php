@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Models\UnitSize;
+use Illuminate\Support\Carbon;
 
 class ProductController extends Controller
 {
@@ -12,7 +15,12 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        //
+        $products = Product::all(); //ORM Eloquent
+        $tproducts = Product::onlyTrashed(); //ORM Eloquent
+        $unitsizes = UnitSize::all(); //ORM Eloquent
+
+        return view('dashboard.admin.product.index', compact('products','tproducts', 'unitsizes'));
+
     }
 
     /**
@@ -51,7 +59,10 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        //
+        $product = Product::findOrFail($id);
+        $unitsizes = UnitSize::orderBy('type')->get(); //ORM Eloquent
+
+        return view('dashboard.admin.product.edit', compact('product', 'unitsizes'));
     }
 
     /**

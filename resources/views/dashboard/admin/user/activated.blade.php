@@ -1,44 +1,42 @@
 
 <div class="card">
-    <div class="card-header d-flex justify-content-between bg-secondary">
-        <h5>{{ __('ACTIVE USERS') }}</h5>
-        {{-- <div class="mr-2">{{ __('Total') }}: <span class="badge rounded-pill bg-danger ml-2">{{ count($users) }}</span></div> --}}
+    <div class="card-header bg-secondary">
+    <h3 class="card-title">{{ __('ACTIVE USERS') }}</h3>
     </div>
+    <!-- /.card-header -->
     <div class="card-body">
-        <table class="table">
+        <table id="example1" class="table table-bordered table-striped">
             <thead>
-                <tr>
-                    <th scope="col">#</th> 
-                    <th scope="col">Avatar</th>
-                    {{-- <th scope="col">Name</th> --}}
-                    <th scope="col">Username</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Sponsor</th>
-                    <!-- <th scope="col">Created At</th> -->
-                    <!-- <th scope="col">Status</th> -->
-                    <th scope="col" class="float-right">Action</th>
-                </tr>
+            <tr>
+                {{-- <th>#</th> --}}
+                <th>Photo</th>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Sponsor</th>
+                <th>Last Login</th>
+                <th>Action</th>
+            </tr>
             </thead>
             <tbody>
-                @foreach ($users as $user)
-                <tr>
-                    <td scope="row">{{ $users->firstItem()+$loop->index }}</td>
-                    <td>{{ $user->profile_image_url }}</td>
-                    {{-- <td><small>{{ $user->name }}</small></td> --}}
-                    <td>{{ $user->username }}</td>
-                    <td><small>{{ $user->email }}</small></td>
-                    <td>{{ $user->sponsor }}</td>
-                    <!-- <td>{{-- carbon\carbon::parse($user->created_at)->diffForHumans() --}}</td> -->
-                    <!-- <td>{{-- $user->activeUser->user_id --}}</td> -->
-                    <td class="d-flex justify-content-end align-items-end">
-                        <a href="{{ url('admin/user/'.$user->id.'/edit')}}" class="btn btn-xs btn-info ml-1">Edit/View</a>
-                        <a href="{{ url('admin/user/softdelete/'.$user->id) }}" class="btn btn-xs btn-warning ml-1">Deactivate</a>
-                    </td>
-
-                </tr>
-                @endforeach
+            @foreach ($users as $user)
+            <tr>
+                {{-- <td>{{ $users->firstItem()+$loop->index }}</td> --}}
+                <td>{{ $user->profile_image_url }}</td>
+                <td>{{ $user->name }}</td>
+                <td>{{ $user->username }}</td>
+                <td><small>{{ $user->email }}</small></td>
+                <td>{{ $user->sponsor }}</td>
+                <td><small>{{ carbon\carbon::parse($user->last_login)->diffForHumans() }}</small></td>
+                <td class="d-flex align-items-end">
+                    <a href="{{ url('admin/user/'.$user->id.'/edit')}}" class="btn btn-xs btn-info ml-1">Edit/View</a>
+                    <a href="{{ url('admin/user/softdelete/'.$user->id) }}" class="btn btn-xs btn-warning ml-1">Deactivate</a>
+                </td>
+            </tr>
+            @endforeach
             </tbody>
         </table>
-        <p>{!! $users->appends(Request::all())->links() !!} </p>
-    </div> <!--  card-body -->
-</div> <!--  card -->
+    </div>
+    <!-- /.card-body -->
+</div>
+<!-- /.card -->

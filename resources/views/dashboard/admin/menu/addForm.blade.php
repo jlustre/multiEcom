@@ -38,10 +38,11 @@
                 <label for="routegroup" class="form-label">{{ __('Route Group') }}</label>
                 <select name="routegroup" class="form-control" id="routegroup" value="{{ old('routegroup') }}">
                     <option value="">Select one</option>
-                    <option value="user" {{ (old('routegroup') == 'user') ? 'selected' : '' }}>user</option>
+                    <option value="brand" {{ (old('routegroup') == 'brand') ? 'selected' : '' }}>brand</option>
                     <option value="category" {{ (old('routegroup') == 'category') ? 'selected' : '' }}>category</option>
                     <option value="menu" {{ (old('routegroup') == 'menu') ? 'selected' : '' }}>menu</option>
-                    <option value="brand" {{ (old('routegroup') == 'brand') ? 'selected' : '' }}>brand</option>
+                    <option value="product" {{ (old('routegroup') == 'product') ? 'selected' : '' }}>product</option>
+                    <option value="user" {{ (old('routegroup') == 'user') ? 'selected' : '' }}>user</option>
                 </select>
             </div>
 
